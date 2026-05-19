@@ -1,5 +1,6 @@
 using Microsoft.EntityFrameworkCore;
 using MyStreeTBackend.Data;
+using MyStreeTBackend.Global;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -14,8 +15,10 @@ builder.Services.AddDbContext<AppDbContext>(options =>
     GetConnectionString
     ("DefaultConnection"))
 );
+builder.Services.AddRepositoriesService();
 
-
+builder.Services.AddControllers();
+builder.Services.AddSwaggerGen();
 builder.Services.AddOpenApi();
 var app = builder.Build();
 
@@ -23,10 +26,12 @@ var app = builder.Build();
 if (app.Environment.IsDevelopment())
 {
     app.MapOpenApi();
+    app.UseSwagger();
+    app.UseSwaggerUI();
 }
 
-
-
+app.UseMiddleware<GlobalExceptionHandlerMiddleware>();
+app.MapControllers();
 
 app.Run();
 

@@ -4,6 +4,8 @@
 # Folders
 bin/
 obj/
+/bin/
+/obj/
 .vs/
 
 # Visual Studio cache/options directory

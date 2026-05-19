@@ -1,0 +1,11 @@
+{
+  "version": 2,
+  "dgSpecHash": "g5Tmw/Wt7oU=",
+  "success": true,
+  "projectFilePath": "C:\\Users\\thomas.bansod\\Desktop\\CapStone\\MyStreeTBackend\\MyStreeTBackend.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\thomas.bansod\\.nuget\\packages\\microsoft.aspnetcore.openapi\\9.0.6\\microsoft.aspnetcore.openapi.9.0.6.nupkg.sha512",
+    "C:\\Users\\thomas.bansod\\.nuget\\packages\\microsoft.openapi\\1.6.17\\microsoft.openapi.1.6.17.nupkg.sha512"
+  ],
+  "logs": []
+}

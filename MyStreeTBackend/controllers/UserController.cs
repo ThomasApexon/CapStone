@@ -27,5 +27,11 @@ namespace MyStreeTBackend.controllers
             var response = new ApiResponse<bool>(true, "User registered successfully", createdUser);
             return Ok(response);
         }
+
+        [HttpPost("login")]
+        public async Task<IActionResult> UserLogin([FromBody] LoginDto loginDto)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

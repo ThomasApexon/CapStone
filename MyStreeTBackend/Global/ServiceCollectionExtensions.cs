@@ -7,6 +7,7 @@ using MyStreeTBackend.Repo;
 using MyStreeTBackend.Repo.RepoImpl;
 using MyStreeTBackend.Service;
 using MyStreeTBackend.Service.ServiceImpl;
+using MyStreeTBackend.Utils;
 
 namespace MyStreeTBackend.Global
 {
@@ -19,10 +20,14 @@ namespace MyStreeTBackend.Global
 
             //Services
             services.AddScoped<IuserService, UserService>();
-
+            services.AddScoped<IAuthService, AuthService>();
 
             //AutoMapper
             services.AddAutoMapper(typeof(UserProfile));
+
+            //Token Service
+            services.AddScoped<TokenService>();
+
         }
     }
 }

@@ -10,8 +10,8 @@ namespace MyStreeTBackend.Service.ServiceImpl
     public class AuthService : IAuthService
     {
         private readonly IuserService _userService;
-        private readonly TokenService _tokenService;
-        public AuthService(IuserService userService, TokenService tokenService)
+        private readonly ITokenService _tokenService;
+        public AuthService(IuserService userService, ITokenService tokenService)
         {
             _userService = userService;
             _tokenService = tokenService;

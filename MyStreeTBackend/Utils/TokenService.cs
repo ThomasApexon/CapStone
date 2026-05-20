@@ -10,7 +10,7 @@ using MyStreeTBackend.Models;
 
 namespace MyStreeTBackend.Utils
 {
-    public class TokenService
+    public class TokenService : ITokenService
     {
         private readonly IConfiguration _configuration;
         public TokenService(IConfiguration configuration)

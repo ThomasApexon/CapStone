@@ -15,24 +15,8 @@ namespace MyStreeTBackend.Repo.RepoImpl
         {
             _context = context;
         }
-        public async Task<bool> AddProductAsync(Product product)
-        {
-            await _context.Products.AddAsync(product);
-            await _context.SaveChangesAsync();
-            return true;
-        }
 
-        public async Task<bool> DeleteProductAsync(Guid id)
-        {
-            var product = await _context.Products.FirstOrDefaultAsync(p => p.Id == id);
-            if (product == null) return false;
-
-            _context.Products.Remove(product);
-            await _context.SaveChangesAsync();
-            return true;
-        }
-
-        public async Task<IEnumerable<Product>> GetAllProductsAsync()
+        public async Task<List<Product>> GetAllProductsAsync()
         {
             return await _context.Products.ToListAsync();
         }
@@ -42,14 +26,59 @@ namespace MyStreeTBackend.Repo.RepoImpl
             return await _context.Products.FirstOrDefaultAsync(p => p.Id == id);
         }
 
-        public async Task<bool> UpdateProductAsync(Product product)
+        public async Task<Product> CreateProductAsync(Product product)
         {
-            var existingProduct = await _context.Products.FirstOrDefaultAsync(p => p.Id == product.Id);
-            if (existingProduct == null) return false;
+            _context.Products.Add(product);
+            await _context.SaveChangesAsync();
+            return product;
+        }
 
-            _context.Entry(existingProduct).CurrentValues.SetValues(product);
+        public async Task<Product> UpdateProductAsync(Product product)
+        {
+            _context.Products.Update(product);
+            await _context.SaveChangesAsync();
+            return product;
+        }
+
+        public async Task<bool> DeleteProductAsync(Guid id)
+        {
+            var product = await _context.Products.FindAsync(id);
+            if (product == null) return false;
+
+            _context.Products.Remove(product);
             await _context.SaveChangesAsync();
             return true;
+        }
+
+        public async Task<List<Product>> GetProductsByBrandAsync(string brand)
+        {
+            return await _context.Products
+                .Where(p => p.Brand.Contains(brand))
+                .ToListAsync();
+        }
+
+        public async Task<List<Product>> GetProductsBySizeAsync(string size)
+        {
+            return await _context.Products
+                .Where(p => p.Size.Contains(size))
+                .ToListAsync();
+        }
+
+        public async Task<List<Product>> GetProductsFilteredAsync(string brand = null, string size = null)
+        {
+            var query = _context.Products.AsQueryable();
+
+            if (!string.IsNullOrEmpty(brand))
+            {
+                query = query.Where(p => p.Brand.Contains(brand));
+            }
+
+            if (!string.IsNullOrEmpty(size))
+            {
+                query = query.Where(p => p.Size.Contains(size));
+            }
+
+            return await query.ToListAsync();
         }
     }
 }

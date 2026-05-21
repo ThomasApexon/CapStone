@@ -18,11 +18,13 @@ namespace MyStreeTBackend.Global
             //repositories
             services.AddScoped<IUserRepository, UserRepository>();
             services.AddScoped<IProductRepository, ProductRepository>();
+            services.AddScoped<IOrderRepository, OrderRepository>();
 
             //Services
             services.AddScoped<IuserService, UserService>();
             services.AddScoped<IAuthService, AuthService>();
             services.AddScoped<IProductService, ProductService>();
+            services.AddScoped<IOrderService, OrderService>();
 
             //AutoMapper
             services.AddAutoMapper(typeof(UserProfile));

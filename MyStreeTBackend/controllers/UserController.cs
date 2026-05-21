@@ -19,19 +19,5 @@ namespace MyStreeTBackend.controllers
         {
             _userService = userService;
         }
-
-        [HttpPost("register")]
-        public async Task<IActionResult> UserRegistration([FromBody] UserRegistrationDTO user)
-        {
-            var createdUser = await _userService.CreateUserAsync(user);
-            var response = new ApiResponse<bool>(true, "User registered successfully", createdUser);
-            return Ok(response);
-        }
-
-        [HttpPost("login")]
-        public async Task<IActionResult> UserLogin([FromBody] LoginDto loginDto)
-        {
-            throw new NotImplementedException();
-        }
     }
 }

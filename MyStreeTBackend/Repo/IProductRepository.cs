@@ -8,11 +8,13 @@ namespace MyStreeTBackend.Repo
 {
     public interface IProductRepository
     {
-        // Define methods for product CRUD operations
-        Task<IEnumerable<Product>> GetAllProductsAsync();
+        Task<List<Product>> GetAllProductsAsync();
         Task<Product> GetProductByIdAsync(Guid id);
-        Task<bool> AddProductAsync(Product product);  
-        Task<bool> UpdateProductAsync(Product product);
+        Task<Product> CreateProductAsync(Product product);
+        Task<Product> UpdateProductAsync(Product product);
         Task<bool> DeleteProductAsync(Guid id);
+        Task<List<Product>> GetProductsByBrandAsync(string brand);
+        Task<List<Product>> GetProductsBySizeAsync(string size);
+        Task<List<Product>> GetProductsFilteredAsync(string brand = null, string size = null);
     }
 }
